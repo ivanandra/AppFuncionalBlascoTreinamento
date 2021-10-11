@@ -1,0 +1,71 @@
+﻿@model IEnumerable<BlascoAppFuncionalTreinamento.Models.Cliente>
+
+@{
+    ViewBag.Title = "Gerenciador de Clientes";
+}
+
+@if(TempData["Mensagem"] != null)
+            {
+                <div class="alert alert-success">
+                    <button type="button"  class="close" alert-dismiss="alert">x</button>
+                    <h5>@TempData["Mensagem"].ToString()</h5>
+                </div>
+            }
+
+<h2>Clientes</h2>
+
+<a href="@Url.Action("Create")" class="btn btn-primary">
+    Novo Cliente  
+</a>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Senha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConfirmacaSenha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Senha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConfirmacaSenha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataCadastro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ativo)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-primary">Editar</a> 
+            <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-warning">Detalhes</a>
+            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger">Deletar</a>
+        </td>
+    </tr>
+}
+
+</table>
